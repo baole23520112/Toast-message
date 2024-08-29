@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<link rel="stylesheet" href="./styles.css" />
+	</head>
+	<body>
+		<div class="main">
+			<form action="" method="POST" class="form" id="form-1">
+				<h3 class="heading">Create an account</h3>
+				<p class="desc">️Connect with your friends today!</p>
+
+				<div class="spacer"></div>
+
+				<div class="form-group">
+					<label for="fullname" class="form-label">Username</label>
+					<input
+						id="fullname"
+						name="fullname"
+						type="text"
+						placeholder="VD: Jonas2024"
+						class="form-control"
+					/>
+					<span class="form-message"></span>
+				</div>
+
+				<div class="form-group">
+					<label for="email" class="form-label">Email</label>
+					<input
+						id="email"
+						name="email"
+						type="text"
+						placeholder="VD: email@domain.com"
+						class="form-control"
+					/>
+					<span class="form-message"></span>
+				</div>
+
+				<div class="form-group">
+					<label for="password" class="form-label">Password</label>
+					<input
+						id="password"
+						name="password"
+						type="password"
+						placeholder="Enter your password"
+						class="form-control"
+					/>
+					<span class="form-message"></span>
+				</div>
+
+				<div class="form-group">
+					<label for="password_confirmation" class="form-label"
+						>Confirm password</label
+					>
+					<input
+						id="password_confirmation"
+						name="password_confirmation"
+						placeholder="Enter your password"
+						type="password"
+						class="form-control"
+					/>
+					<span class="form-message"></span>
+				</div>
+
+				<button class="form-submit">Sign Up</button>
+				<p class="form-already">
+					Already have an account?
+					<a class="form-already__login" href="#!">Login</a>
+				</p>
+			</form>
+		</div>
+		<script src="./script.js"></script>
+		<script>
+			// Pass an object into Validator
+			Validator({
+				form: "#form-1",
+				errorSelector: ".form-message",
+				rules: [
+					Validator.isRequired("#fullname", "Please fill out username"),
+					Validator.isEmail("#email"),
+					Validator.minLength("#password", 6),
+					Validator.isRequired("#password_confirmation", "Please fill out confirmed password"),
+					Validator.isConfirmed(
+						"#password_confirmation",
+						() => {
+							return document.querySelector("#form-1 #password")
+								.value;
+						},
+						"Please ensure both passwords are identical and try again."
+					),
+				],
+				onSubmit: function(data) {
+					console.log(data);
+				}
+			});
+		</script>
+	</body>
+</html>
