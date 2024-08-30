@@ -109,3 +109,11 @@ html {
   margin-top: 10px;
   font-size: 13px;
 }
+
+.radio-input {
+  display: flex;
+  column-gap: 25px;
+  flex-wrap: nowrap;
+  align-items: center;
+  text-align: center;
+}
